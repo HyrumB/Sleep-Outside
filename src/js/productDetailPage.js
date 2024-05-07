@@ -1,5 +1,3 @@
-// json/tents.json data source
-
 const companyName = document.querySelector("#company__name");
 const itemName = document.querySelector("#product__name");
 const image = document.querySelector("#product__image");
@@ -7,35 +5,37 @@ const price = document.querySelector(".product-card__price");
 const color = document.querySelector(".product__color");
 const description = document.querySelector(".product__description");
 
-const url = "../json/tents.json";
+const dataPath = "../json/tents.json";
 
-var productID = "880RR" 
+//pull id from url
+const queryString = window.location.search; // grab url
+const urlParams = new URLSearchParams(queryString);
+const id = urlParams.get("id"); // Access the value of the "id" parameter
 
-
+// get the dictonary from the product json
 async function getData() {
-  const response = await fetch(url);
+  const response = await fetch(dataPath);
   const data = await response.json();
-  console.log(data);
-
+  console.log(data); // output
+  return data;
 }
-
-
 
 // find product by id
-function findProductById(id) {
-  const products = getData();
-  console.log(products.find((item) => item.Id === id));
-
-
+async function findProductById(id) {
+  var products = await getData();
+  console.log(products[id]);
+  return products[id];
 }
 
-findProductById(productID);
+async function addContentToPage() {
+  const product = await findProductById(id);
 
-companyName.textContent = "The North Face";
-itemName.textContent = "The North Face";
-image.src =
-  "../images/tents/the-north-face-talus-tent-4-person-3-season-in-golden-oak-saffron-yellow~p~985rf_01~320.jpg";
-price.textContent = "$9.99";
-color.textContent = "black";
-description.textContent = "how much wood could a wood chuck chuck";
+  companyName.textContent = product.Brand.Name;
+  itemName.textContent = product.NameWithoutBrand;
+  image.src = product.Image;
+  // price.textContent = product.FinalPrice;
+  color.textContent = product.Color.ColorName;
+  description.textContent = product.DescriptionHtmlSimple;
+}
 
+addContentToPage();
