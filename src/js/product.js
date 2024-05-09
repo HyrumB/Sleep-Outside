@@ -12,6 +12,13 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
+
+  const cartImage = document.querySelector(".cart svg");
+  cartImage.classList.add('wiggle');
+  
+  setTimeout(() => {
+    cartImage.classList.remove('wiggle');
+  }, 500);
 }
 
 // add listener to Add to Cart button
