@@ -1,41 +1,61 @@
-const companyName = document.querySelector("#company__name");
-const itemName = document.querySelector("#product__name");
-const image = document.querySelector("#product__image");
-const price = document.querySelector(".product-card__price");
-const color = document.querySelector(".product__color");
-const description = document.querySelector(".product__description");
-
-const dataPath = "../json/tents.json";
+const companyName = document.querySelector("#productName");
+const itemName = document.querySelector("#productNameWithoutBrand");
+const image = document.querySelector("#productImage");
+const price = document.querySelector("#productFinalPrice");
+const color = document.querySelector("#productColorName");
+const description = document.querySelector("#productDescriptionHtmlSimple");
+const addToCart = document.querySelector("#addToCart");
 
 //pull id from url
 const queryString = window.location.search; // grab url
 const urlParams = new URLSearchParams(queryString);
+
+const itemType = urlParams.get("itemType");
 const id = urlParams.get("id"); // Access the value of the "id" parameter
+console.log(id);
+console.log(itemType);
+const dataPath = `../json/${itemType}.json`;
 
 // get the dictonary from the product json
 async function getData() {
   const response = await fetch(dataPath);
   const data = await response.json();
-  console.log(data); // output
-  return data;
+  if (response.ok) {
+    console.log(data); // output
+    return data;
+  } else {
+    throw new Error("Bad Response");
+  }
 }
 
-// find product by id
+// grab product from array based on var id
 async function findProductById(id) {
   var products = await getData();
   console.log(products[id]);
   return products[id];
 }
 
-async function addContentToPage() {
+// function displaySelectedProductColor(){
+
+// }
+
+async function addContentToPage(discountedPrice = null) {
   const product = await findProductById(id);
 
   companyName.textContent = product.Brand.Name;
   itemName.textContent = product.NameWithoutBrand;
   image.src = product.Image;
-  // price.textContent = product.FinalPrice;
-  color.textContent = product.Color.ColorName;
-  description.textContent = product.DescriptionHtmlSimple;
+
+  // change price if their is a discount
+  if (discountedPrice != null) {
+    price.textContent = `${product.finalPrice} ${discountedPrice} `;
+  } else {
+    price.textContent = product.FinalPrice;
+  }
+
+  color.textContent = product.Colors[0].ColorName;
+  description.innerHTML = product.DescriptionHtmlSimple;
+  addToCart.setAttribute("data-id", product.Id);
 }
 
 addContentToPage();
