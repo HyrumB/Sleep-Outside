@@ -14,10 +14,10 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 
   const cartImage = document.querySelector(".cart svg");
-  cartImage.classList.add('wiggle');
-  
+  cartImage.classList.add("wiggle");
+
   setTimeout(() => {
-    cartImage.classList.remove('wiggle');
+    cartImage.classList.remove("wiggle");
   }, 500);
 }
 
