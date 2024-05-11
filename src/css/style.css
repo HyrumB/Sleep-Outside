@@ -187,6 +187,11 @@ button {
   width: 100%;
 }
 
+/* discount styles */
+.clearance {
+  text-decoration: line-through;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

@@ -21,3 +21,10 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function getQueryString(item = "id"){
+  const queryString = window.location.search; // grab url
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get(item);
+  return product;
+}
