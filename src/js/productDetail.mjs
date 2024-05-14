@@ -21,7 +21,7 @@ export function addProductToCart(product) {
   cartArray.push(product);
   setLocalStorage("so-cart", cartArray);
 }
-
+  
 
 function addContentToPage(discountPercent = null) {
   companyName.textContent = product.Brand.Name;
