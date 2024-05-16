@@ -18,7 +18,7 @@ export async function findProductById(id, category = "tents") {
   console.log(products);
   console.log(typeof products);
   
-  if (typeof products !== 'list') {
+  if (typeof products !== 'list' && products.Results != null) {
     return products.Result.find((item) => item.Id === id);
   }
   else{
