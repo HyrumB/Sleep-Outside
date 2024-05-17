@@ -1,10 +1,5 @@
 import { findProductById } from "./productData.mjs";
 import { addProductToCart } from "./productDetail.mjs";
-// function addProductToCart(product) {
-//   const cartArray = getLocalStorage("so-cart") || [];
-//   cartArray.push(product);
-//   setLocalStorage("so-cart", cartArray);
-// }
 
 // add to cart button event handler
 async function addToCartHandler(e) {
