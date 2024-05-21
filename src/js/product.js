@@ -1,22 +1,13 @@
 import { findProductById } from "./productData.mjs";
 import { addProductToCart } from "./productDetail.mjs";
-// function addProductToCart(product) {
-//   const cartArray = getLocalStorage("so-cart") || [];
-//   cartArray.push(product);
-//   setLocalStorage("so-cart", cartArray);
-// }
+import { cartAnimation } from "./cartAnimation.mjs";
 
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
 
-  const cartImage = document.querySelector(".cart svg");
-  cartImage.classList.add("wiggle");
-
-  setTimeout(() => {
-    cartImage.classList.remove("wiggle");
-  }, 500);
+  cartAnimation();
 }
 
 // add listener to Add to Cart button

@@ -12,10 +12,8 @@
     "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
     "test": "jest"
   },
-
   "author": "Shane Thompson",
   "license": "ISC",
-
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.1.0",
     "eslint": "^8.26.0",
@@ -26,13 +24,11 @@
     "svelte": "^4.2.17",
     "vite": "^5.2.11"
   },
-
   "babel": {
     "presets": [
       "@babel/preset-env"
     ]
   },
-
   "browserslist": [
     "last 3 and_chr versions",
     "last 3 chrome versions",

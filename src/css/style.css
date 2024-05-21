@@ -110,27 +110,6 @@ button {
   fill: gray;
 }
 
-@keyframes wiggle {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(15deg);
-  }
-  50% {
-    transform: rotate(-15deg);
-  }
-  75% {
-    transform: rotate(15deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.wiggle {
-  animation: wiggle 0.5s ease-in-out;
-}
 /* End cart icon styles */
 
 .mission {
@@ -228,11 +207,6 @@ button {
   grid-column: 3;
 }
 /* End cart list card styles */
-
-/* Start cart total styles */
-.cart-footer-hide {
-  display: none;
-}
 
 @media screen and (min-width: 500px) {
   body {
