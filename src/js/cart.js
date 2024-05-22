@@ -2,8 +2,11 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
+  const validCartItems = cartItems.filter((item) => item !== null);
 
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  // console.log(validCartItems);
+
+  const htmlItems = validCartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
@@ -28,12 +31,16 @@ function cartItemTemplate(item) {
 
 function calculateTotal() {
   const cartItems = getLocalStorage("so-cart");
+  const validCartItems = cartItems.filter((item) => item !== null);
 
-  if (cartItems.length > 0) {
+  if (validCartItems.length > 0) {
     const cartFooter = document.createElement("div");
     cartFooter.classList.add("cart-footer");
 
-    const total = cartItems.reduce((acc, item) => acc + item.FinalPrice, 0);
+    const total = validCartItems.reduce(
+      (acc, item) => acc + item.FinalPrice,
+      0
+    );
 
     const totalParagraph = document.createElement("p");
     totalParagraph.classList.add("cart-total");

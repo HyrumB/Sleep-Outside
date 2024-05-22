@@ -16,7 +16,7 @@
 
     {#each filter(items) as item}
       <li class="product-card">
-        <a href={`product_pages/index.html?itemType=${category}&id=${item.id}`}>
+        <a href={`product_pages/index.html?itemType=${category}&id=${item.Id}`}>
           <img src={item.Image} items alt="Marmot Ajax tent" />
           <h3 class="card__brand">{item.Brand.Name}</h3>
           <h2 class="card__name">{item.NameWithoutBrand}</h2>
