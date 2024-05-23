@@ -1,3 +1,6 @@
+import Header from "./components/MainHeader.svelte";
+import Footer from "./components/MainFooter.svelte";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -28,4 +31,14 @@ export function getQueryString(item = "id"){
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(item);
   return product;
+}
+
+export function renderHeaderFooter() {
+  new Header({
+    target: document.querySelector(".divider")
+  })
+
+  new Footer({
+    target: document.querySelector("footer")
+  })
 }

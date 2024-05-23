@@ -1,12 +1,16 @@
 export function generateAlerts() {
-  fetch("../json/alerts.json")
+  fetch("/json/alerts.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return response.json();
+      // return response.json();
+      const test = response.json();
+      console.log(test);
+      return test;
     })
     .then((alerts) => {
+
       if (alerts.length > 0) {
         const alertSection = document.createElement("section");
         alertSection.classList.add("alert-list");
