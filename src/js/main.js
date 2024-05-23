@@ -1,10 +1,10 @@
 // main.js
 import ProductList from "./components/ProductList.svelte";
-import { generateAlerts } from "./alert.mjs";
+import { getAlertsData } from "/js/alert.mjs";
 import { renderHeaderFooter } from "./utils.mjs";
 
-generateAlerts();
-// renderHeaderFooter();
+getAlertsData();
+renderHeaderFooter();
 
 new ProductList({
     target: document.querySelector(".products"),
