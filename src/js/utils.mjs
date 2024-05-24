@@ -39,6 +39,8 @@ export function getCartCount() {
   if (validCartItems.length > 0) {
     const count = validCartItems.length;
     return count;
+  } else {
+    return 0;
   }
 }
 
