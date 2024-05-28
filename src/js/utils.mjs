@@ -1,3 +1,6 @@
+import Header from "./components/MainHeader.svelte";
+import Footer from "./components/MainFooter.svelte";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -28,4 +31,26 @@ export function getQueryString(item = "id"){
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(item);
   return product;
+}
+
+export function getCartCount() {
+  const cartItems = getLocalStorage("so-cart");
+  const validCartItems = cartItems.filter((item) => item !== null);
+  if (validCartItems.length > 0) {
+    const count = validCartItems.length;
+    return count;
+  } else {
+    return 0;
+  }
+}
+
+export function renderHeaderFooter() {
+  new Header({
+    target: document.querySelector(".divider"),
+    props: { cartCount: getCartCount() },
+  })
+
+  new Footer({
+    target: document.querySelector("footer")
+  })
 }

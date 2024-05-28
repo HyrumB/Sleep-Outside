@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { getLocalStorage, setLocalStorage, getQueryString } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 // selectors
 const companyName = document.querySelector("#productName");
@@ -20,6 +21,7 @@ export function addProductToCart(product) {
   const cartArray = getLocalStorage("so-cart") || [];
   cartArray.push(product);
   setLocalStorage("so-cart", cartArray);
+  cartCount.set(cartArray.length);
 }
   
 

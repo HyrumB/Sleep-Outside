@@ -1,6 +1,5 @@
-const cartImage = document.querySelector("div.cart svg");
-
 export function cartAnimation() {
+  const cartImage = document.getElementById("cart-svg");
   let angle = 5;
   const wiggleInterval = setInterval(() => {
     cartImage.style.transform = `rotate(${angle}deg)`;
