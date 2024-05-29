@@ -47,7 +47,6 @@ export function getCartCount() {
 export function renderHeaderFooter() {
   new Header({
     target: document.querySelector(".divider"),
-    props: { cartCount: getCartCount() },
   })
 
   new Footer({
