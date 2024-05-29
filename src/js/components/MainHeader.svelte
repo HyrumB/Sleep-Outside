@@ -2,8 +2,22 @@
   import { cartCount } from "/js/stores.mjs";
 </script>
 
+<style>
+  .cart-count {
+    position: absolute;
+    top: 7px;
+    right: -7px;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background-color: #F49390;
+  }
+</style>
+
 <div class="logo">
+    <!-- svelte-ignore a11y-img-redundant-alt -->
     <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+    <!-- svelte-ignore a11y-img-redundant-alt -->
     <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
     <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
   </div>
