@@ -16,34 +16,41 @@ const itemType = getQueryString("itemType");
 const id = getQueryString("id"); // Access the value of the "id" parameter
 const product = await findProductById(id, itemType);
 
-
 export function addProductToCart(product) {
   const cartArray = getLocalStorage("so-cart") || [];
   cartArray.push(product);
   setLocalStorage("so-cart", cartArray);
   cartCount.set(cartArray.length);
 }
-  
 
 function addContentToPage(discountPercent = null) {
-  companyName.textContent = product.Brand.Name;
-  itemName.textContent = product.NameWithoutBrand;
-  image.src = product.Image;
+  try {
+    companyName.textContent = product.Brand.Name;
+    itemName.textContent = product.NameWithoutBrand;
+    image.src = product.Image;
 
-  // change price if their is a discount
-  if (product.isclearance != null && product.isclearance == true) {
-    // suggested final price is a placeholder until i find the discounted price
-    price.innerHTML = `
-  <span class="clearance">${product.FinalPrice}</span>
-  ${product.SuggestedRetailPrice} ${discountPercent}% off`;
-  
-  } else {
-    price.textContent = product.FinalPrice;
+    // change price if their is a discount
+    if (product.isclearance != null && product.isclearance == true) {
+      // suggested final price is a placeholder until i find the discounted price
+      price.innerHTML = `
+      <span class="clearance">${product.FinalPrice}</span>
+      ${product.SuggestedRetailPrice} ${discountPercent}% off`;
+    } else {
+      price.textContent = product.FinalPrice;
+    }
+
+    color.textContent = product.Colors[0].ColorName;
+    description.innerHTML = product.DescriptionHtmlSimple;
+    addToCart.setAttribute("data-id", product.Id);
+  } catch (error) {
+    if (error instanceof TypeError) {
+      // Check if it's a TypeError
+      console.log(error);
+    } else {
+      // Handle other types of errors
+      console.log("An unexpected error occurred:", error);
+    }
   }
-
-  color.textContent = product.Colors[0].ColorName;
-  description.innerHTML = product.DescriptionHtmlSimple;
-  addToCart.setAttribute("data-id", product.Id);
 }
 
 // function displaySelectedProductColor(){}
