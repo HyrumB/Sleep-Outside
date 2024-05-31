@@ -26,6 +26,7 @@ export function addProductToCart(product) {
   
 
 function addContentToPage(discountPercent = null) {
+  try{
   companyName.textContent = product.Brand.Name;
   itemName.textContent = product.NameWithoutBrand;
   image.src = product.Image;
@@ -44,6 +45,13 @@ function addContentToPage(discountPercent = null) {
   color.textContent = product.Colors[0].ColorName;
   description.innerHTML = product.DescriptionHtmlSimple;
   addToCart.setAttribute("data-id", product.Id);
+}
+catch(error){
+  if (error instanceof TypeError) {
+    console.log("no product found");
+    addToCart.style.display = "none";
+  }
+}
 }
 
 // function displaySelectedProductColor(){}
