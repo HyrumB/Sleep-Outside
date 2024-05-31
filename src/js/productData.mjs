@@ -17,11 +17,10 @@ export async function getData(category) {
 export async function findProductById(id, category = "tents") {
   const products = await getData(category);
 
-  try {
+
     if (typeof products !== "list" && products.Results != null) {
       return products.Result.find((item) => item.Id === id);
     } else {
       return products.find((item) => item.Id === id);
     }
-  } catch (error) {}
 }

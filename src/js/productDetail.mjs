@@ -25,9 +25,10 @@ export function addProductToCart(product) {
 
 function addContentToPage(discountPercent = null) {
   try {
+    console.log(product);
     companyName.textContent = product.Brand.Name;
     itemName.textContent = product.NameWithoutBrand;
-    image.src = product.Image;
+    image.src = product.Images.PrimaryLarge
 
     // change price if their is a discount
     if (product.isclearance != null && product.isclearance == true) {

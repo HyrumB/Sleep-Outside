@@ -6,5 +6,5 @@ console.log(itemCategory);
 
 new ProductList({
     target: document.querySelector(".products"),
-    props: { category:  itemCategory},
+    props: { category:  itemCategory },
 });
