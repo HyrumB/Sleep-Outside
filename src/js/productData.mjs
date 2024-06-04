@@ -1,3 +1,5 @@
+const baseURL = import.meta.env.VITE_SERVER_URL;
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -7,6 +9,7 @@ function convertToJson(res) {
 }
 
 export async function getData(category) {
+
   try {
     const response = await fetch(baseURL + `products/search/${category}`);
     const data = await convertToJson(response);
@@ -18,6 +21,7 @@ export async function getData(category) {
 
 export async function findProductById(id, category = "tents") {
   const products = await getData(category);
+
   console.log(products);
   console.log(typeof products);
   try {
@@ -26,6 +30,7 @@ export async function findProductById(id, category = "tents") {
     } else {
       return products.find((item) => item.Id === id);
     }
+
   } catch (error) {
     return error;
   }
