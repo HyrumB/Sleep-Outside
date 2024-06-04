@@ -25,10 +25,11 @@ export function addProductToCart(product) {
 
 function addContentToPage(discountPercent = null) {
   try {
-    console.log(product);
+
     companyName.textContent = product.Brand.Name;
     itemName.textContent = product.NameWithoutBrand;
     image.src = product.Images.PrimaryLarge
+
 
     // change price if their is a discount
     if (product.isclearance != null && product.isclearance == true) {
@@ -36,6 +37,7 @@ function addContentToPage(discountPercent = null) {
       price.innerHTML = `
       <span class="clearance">${product.FinalPrice}</span>
       ${product.SuggestedRetailPrice} ${discountPercent}% off`;
+
     } else {
       price.textContent = product.FinalPrice;
     }
@@ -45,11 +47,14 @@ function addContentToPage(discountPercent = null) {
     addToCart.setAttribute("data-id", product.Id);
   } catch (error) {
     if (error instanceof TypeError) {
+
       // Check if it's a TypeError
       console.log(error);
     } else {
       // Handle other types of errors
-      console.log("An unexpected error occurred:", error);
+      console.log("no product found");
+      addToCart.style.display = "none";
+      itemName.textContent = "404 ERROR: product not found";
     }
   }
 }
