@@ -46,16 +46,9 @@ function addContentToPage(discountPercent = null) {
     description.innerHTML = product.DescriptionHtmlSimple;
     addToCart.setAttribute("data-id", product.Id);
   } catch (error) {
-    if (error instanceof TypeError) {
-
-      // Check if it's a TypeError
-      console.log(error);
-    } else {
-      // Handle other types of errors
-      console.log("no product found");
-      addToCart.style.display = "none";
-      itemName.textContent = "404 ERROR: product not found";
-    }
+    console.log(error);
+    addToCart.style.display = "none";
+    itemName.textContent = "404 ERROR: product not found";
   }
 }
 
