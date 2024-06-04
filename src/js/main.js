@@ -1,5 +1,5 @@
 // main.js
-import { getAlertsData } from "/js/alert.mjs";
+import { getAlertsData } from "./alert.mjs";
 import { renderHeaderFooter } from "./utils.mjs";
 
 getAlertsData();
