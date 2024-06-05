@@ -37,7 +37,7 @@ export function getCartCount() {
   const cartItems = getLocalStorage("so-cart");
   const validCartItems = cartItems.filter((item) => item !== null);
   if (validCartItems.length > 0) {
-    const count = validCartItems.length;
+    const count = validCartItems.reduce((total, item) => total + item.quantity, 0);
     return count;
   } else {
     return 0;
