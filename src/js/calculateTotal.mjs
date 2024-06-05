@@ -8,10 +8,7 @@ export function calculateTotal() {
       const cartFooter = document.createElement("div");
       cartFooter.classList.add("cart-footer");
   
-      const total = validCartItems.reduce(
-        (acc, item) => acc + item.FinalPrice,
-        0
-      );
+      const total = validCartItems.reduce((acc, item) => acc + item.quantity * item.FinalPrice, 0);
   
       const totalParagraph = document.createElement("p");
       totalParagraph.classList.add("cart-total");

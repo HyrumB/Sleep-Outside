@@ -1,5 +1,5 @@
 import { findProductById } from "./productData.mjs";
-import { getLocalStorage, setLocalStorage, getQueryString } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, getQueryString, getCartCount } from "./utils.mjs";
 import { cartCount } from "./stores.mjs";
 
 // selectors
@@ -18,9 +18,16 @@ const product = await findProductById(id, itemType);
 
 export function addProductToCart(product) {
   const cartArray = getLocalStorage("so-cart") || [];
-  cartArray.push(product);
+  const existingProduct = cartArray.find((item) => item.Id === product.Id);
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    product.quantity = 1;
+    cartArray.push(product);
+  }
+
   setLocalStorage("so-cart", cartArray);
-  cartCount.set(cartArray.length);
+  cartCount.set(getCartCount());
 }
 
 function addContentToPage(discountPercent = null) {
