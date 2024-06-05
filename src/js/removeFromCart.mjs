@@ -14,7 +14,7 @@ export function removeFromCart(event) {
     const newCartItems = validCartItems.filter((item) => item.Id !== itemId);
     setLocalStorage("so-cart", newCartItems);
     renderCartContents();
-    addEventListener("DOMContentLoaded", calculateTotal);
+    calculateTotal();
     cartCount.set(getCartCount());
   }
 }
