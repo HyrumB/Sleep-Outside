@@ -1,7 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
 import { calculateTotal } from "./calculateTotal.mjs";
+import { removeFromCart } from "./removeFromCart.mjs";
 
-function renderCartContents() {
+export function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const validCartItems = cartItems.filter((item) => item !== null);
 
@@ -26,6 +27,9 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${totalPrice}</p>
+  <span class="cart-card__remove" data-id="${item.Id}">
+  <img src="/images/trash-bin-minimalistic-svgrepo-com.svg" alt="remove from cart" />
+  </span>
 </li>`;
 
   return newItem;
@@ -34,3 +38,4 @@ function cartItemTemplate(item) {
 renderCartContents();
 
 document.addEventListener("DOMContentLoaded", calculateTotal);
+document.addEventListener("click", removeFromCart);
