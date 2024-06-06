@@ -1,8 +1,8 @@
 <script>
-  import { getData } from "../productData.mjs";
+  import { getProductsByCatagory } from "../productData.mjs";
 
   export let category;
-  let promise = getData(category);
+  let promise = getProductsByCatagory(category);
 
   function filter(allItems) {
     let limitedItems = allItems.slice(0, 4);
