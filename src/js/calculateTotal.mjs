@@ -9,16 +9,20 @@ export function calculateTotal() {
       (acc, item) => acc + item.quantity * item.FinalPrice,
       0
     );
-    console.log("hi"+total)
+    console.log("hi" + total);
 
     return Math.round(total * 100) / 100;
-    
   }
+  return 0;
 }
 
 export function displayCartTotal(total) {
   const cartFooter = document.querySelector(".cart-footer");
-    console.log(total)
+  console.log(total);
+
+  if (total === 0) {
+    cartFooter.remove();
+  }
   if (cartFooter) {
     cartFooter.querySelector(
       ".cart-total"
@@ -33,8 +37,5 @@ export function displayCartTotal(total) {
 
     newCartFooter.appendChild(totalParagraph);
     document.querySelector("main").appendChild(newCartFooter);
-  }
-  if (total === 0) {
-    cartFooter.remove();
   }
 }
