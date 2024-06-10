@@ -30,7 +30,7 @@ export function addProductToCart(product) {
   cartCount.set(getCartCount());
 }
 
-function addContentToPage(discountPercent = null) {
+function addContentToPage(discountPercent = 20) {
   try {
 
     companyName.textContent = product.Brand.Name;
@@ -39,12 +39,15 @@ function addContentToPage(discountPercent = null) {
 
 
     // change price if their is a discount
-    if (product.isclearance != null && product.isclearance == true) {
+    if (product.IsClearance == true) {
+      
+      let discountPrice = product.SuggestedRetailPrice * (discountPercent / 100);
       // suggested final price is a placeholder until i find the discounted price
+      
       price.innerHTML = `
-      <span class="clearance">${product.FinalPrice}</span>
-      ${product.SuggestedRetailPrice} ${discountPercent}% off`;
-
+  
+      <span class="clearance">$${product.SuggestedRetailPrice}</span>
+      $${discountPrice.toFixed(2) } ${discountPercent}% off`;
     } else {
       price.textContent = product.FinalPrice;
     }
