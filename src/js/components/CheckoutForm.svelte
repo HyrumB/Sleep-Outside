@@ -3,17 +3,33 @@
   import { calculateTotal } from "../calculateTotal.mjs";
 
   let list = [];
-  let taxPercent = 0.06;
 
-  let subtotal = calculateTotal(getLocalStorage("so-cart"));
-  let tax = subtotal * taxPercent;
-  let shipping = 10;
-  let total = subtotal + shipping + tax;
 
-  let cart = getLocalStorage("so-cart");
-  const validCart = cart.filter((item) => item !== null);
-  list = validCart.length;
-  shipping += (list -1) * 2;
+  let subtotal= 0
+  let shipping= 0
+  let tax=  0
+  let total= 0
+
+  function init(){
+    subtotal = calculateTotal(getLocalStorage("so-cart"));
+    let cart = getLocalStorage("so-cart");
+
+    calcSummary(subtotal, cart);
+  }
+
+  function calcSummary(subtotal, cart) {
+    let taxPercent = 0.06;
+    tax = subtotal * taxPercent;
+    shipping = 10;
+    total = subtotal + shipping + tax;
+
+    const validCart = cart.filter((item) => item !== null);
+    list = validCart.length;
+    shipping += (list -1) * 2;
+  }
+
+  init();
+
 </script>
 
 <form>
