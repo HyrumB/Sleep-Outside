@@ -1,6 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
 import { calculateTotal } from "./calculateTotal.mjs";
 import { removeFromCart } from "./removeFromCart.mjs";
+import { incrementQuantity } from "./incrementQuantity.mjs";
+import { decrementQuantity } from "./decrementQuantity.mjs";
 
 export function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -27,6 +29,12 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${totalPrice}</p>
+  <span class="cart-card__increment" data-id="${item.Id}">
+  <img src="/images/plus-svgrepo-com.svg" alt="add one to cart" />
+  </span>
+  <span class="cart-card__decrement" data-id="${item.Id}">
+  <img src="/images/less-svgrepo-com.svg" alt="remove one from cart" />
+  </span>
   <span class="cart-card__remove" data-id="${item.Id}">
   <img src="/images/trash-bin-minimalistic-svgrepo-com.svg" alt="remove from cart" />
   </span>
@@ -39,3 +47,5 @@ renderCartContents();
 
 document.addEventListener("DOMContentLoaded", calculateTotal);
 document.addEventListener("click", removeFromCart);
+document.addEventListener("click", incrementQuantity);
+document.addEventListener("click", decrementQuantity);
