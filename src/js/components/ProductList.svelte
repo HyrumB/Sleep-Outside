@@ -1,5 +1,5 @@
 <script>
-  import { getProductsByCatagory } from "../productData.mjs";
+  import { getProductsByCatagory } from "../externalServices.mjs";
 
   export let category;
   let promise = getProductsByCatagory(category);
