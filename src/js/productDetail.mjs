@@ -18,7 +18,8 @@ const product = await findProductById(id, itemType);
 
 export function addProductToCart(product) {
   const cartArray = getLocalStorage("so-cart") || [];
-  const existingProduct = cartArray.find((item) => item.Id === product.Id);
+  const validCartItems = cartArray.filter((item) => item !== null);
+  const existingProduct = validCartItems.find((item) => item.Id === product.Id);
   if (existingProduct) {
     existingProduct.quantity++;
   } else {

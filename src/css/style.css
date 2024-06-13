@@ -214,9 +214,28 @@ button {
   grid-column: 3;
 }
 
-.cart-card__remove {
+.cart-card__increment {
   grid-row: 1;
   grid-column: 4;
+  margin: 0 0.5em;
+  background-color: transparent;
+  padding-bottom: 1.1em;
+  cursor: pointer;
+}
+
+.cart-card__decrement {
+  grid-row: 1;
+  grid-column: 5;
+  margin: 0 0.5em;
+  background-color: transparent;
+  padding-bottom: 1.1em;
+  cursor: pointer;
+}
+
+.cart-card__remove {
+  grid-row: 1;
+  grid-column: 6;
+  margin: 0 0.5em;
   background-color: transparent;
   padding-bottom: 1.1em;
   cursor: pointer;
