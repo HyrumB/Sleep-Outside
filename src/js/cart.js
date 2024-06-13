@@ -1,5 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
-import { calculateTotal } from "./calculateTotal.mjs";
+import { calculateTotal, displayCartTotal } from "./calculateTotal.mjs";
 import { removeFromCart } from "./removeFromCart.mjs";
 import { incrementQuantity } from "./incrementQuantity.mjs";
 import { decrementQuantity } from "./decrementQuantity.mjs";
@@ -45,7 +45,9 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-document.addEventListener("DOMContentLoaded", calculateTotal);
+var total = calculateTotal();
+
+document.addEventListener("DOMContentLoaded", displayCartTotal(total));
 document.addEventListener("click", removeFromCart);
 document.addEventListener("click", incrementQuantity);
 document.addEventListener("click", decrementQuantity);

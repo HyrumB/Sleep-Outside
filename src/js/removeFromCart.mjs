@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage, getCartCount } from "./utils.mjs";
-import { calculateTotal } from "./calculateTotal.mjs";
+import { calculateTotal, displayCartTotal } from "./calculateTotal.mjs";
 import { renderCartContents } from "./cart";
 import { cartCount } from "./stores.mjs";
 
@@ -14,7 +14,7 @@ export function removeFromCart(event) {
     const newCartItems = validCartItems.filter((item) => item.Id !== itemId);
     setLocalStorage("so-cart", newCartItems);
     renderCartContents();
-    calculateTotal();
+    displayCartTotal(calculateTotal());
     cartCount.set(getCartCount());
   }
 }

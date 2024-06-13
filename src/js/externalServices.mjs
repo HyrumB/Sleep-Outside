@@ -35,3 +35,14 @@ export async function findProductById(id, category = "tents") {
     return error;
   }
 }
+
+export async function checkout(payload) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  return await fetch(`${baseURL}checkout`, options).then(convertToJson);
+}

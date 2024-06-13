@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { addProductToCart } from "./productDetail.mjs";
 import { cartAnimation } from "./cartAnimation.mjs";
 import { getQueryString } from "./utils.mjs";
