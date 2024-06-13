@@ -39,5 +39,5 @@ renderCartContents();
 
 var total = calculateTotal();
 
-document.addEventListener("DOMContentLoaded", displayCartTotal(total), );
+document.addEventListener("DOMContentLoaded", displayCartTotal(total));
 document.addEventListener("click", removeFromCart);
