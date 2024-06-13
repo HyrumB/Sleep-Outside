@@ -10,6 +10,14 @@
   let tax=  0
   let total= 0
 
+  function packageItems(items) {}
+    items.map((item) => {
+      
+  
+    })
+  function handleSubmit(e) {}
+
+
   function init(){
     subtotal = calculateTotal(getLocalStorage("so-cart"));
     let cart = getLocalStorage("so-cart");
@@ -29,7 +37,7 @@
   }
 
   init();
-  
+
 
 </script>
 
