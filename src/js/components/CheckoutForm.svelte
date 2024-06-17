@@ -43,29 +43,35 @@
   const handleSubmit = async function (e) {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const json = {};
-    formData.forEach((value, key) => {
-      json[key] = value;
-    });
-    json.orderDate = new Date().toISOString();
-    json.orderTotal = total.toFixed(2);
-    json.tax = tax.toFixed(2);
-    json.shipping = shipping.toFixed(2);
-    json.items = packageItems(getLocalStorage("so-cart"));
-
-    console.log("Form JSON:", JSON.stringify(json, null, 2));
-
     try {
-      const res = await checkout(json);
-      console.log("Response:", res);
+      const formData = new FormData(e.target);
+      const json = {};
+      
+      formData.forEach((value, key) => {
+        json[key] = value;
+      });
+      
+      json.orderDate = new Date().toISOString();
+      json.orderTotal = total.toFixed(2);
+      json.tax = tax.toFixed(2);
+      json.shipping = shipping.toFixed(2);
+      json.items = packageItems(getLocalStorage("so-cart"));
+
+      console.log("Form JSON:", JSON.stringify(json, null, 2));
+
+      try {
+        const res = await checkout(json);
+        console.log("Response:", res);
+      } catch (checkoutErr) {
+        console.error("Checkout Error:", checkoutErr);
+      }
     } catch (err) {
-      console.log("Error:", err);
+      console.error("Form Error:", err);
     }
   };
 </script>
 
-<form on:submit="{handleSubmit}">
+<form on:submit={handleSubmit}>
   <!-- Shipping details -->
   <fieldset class="customer-details">
     <legend>Shipping</legend>
