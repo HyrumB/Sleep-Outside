@@ -1,3 +1,5 @@
+import { getAlertsData } from "./alert.mjs";
+
 export function validateForm() {
   let isValid = true;
 
@@ -15,6 +17,7 @@ export function validateForm() {
   if (!/^[A-Za-z'-]+$/.test(fname)) {
     document.getElementById("fnameError").textContent =
       "First name contains invalid characters";
+    getAlertsData()
     isValid = false;
   } else if (fname.length < 2 || fname.length > 30) {
     document.getElementById("fnameError").textContent =

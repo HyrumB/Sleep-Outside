@@ -69,9 +69,11 @@
         console.log("Response:", res);
       } catch (checkoutErr) {
         console.error("Checkout Error:", checkoutErr);
+        alert(checkoutErr);
       }
     } catch (err) {
       console.error("Form Error:", err);
+      alert(err);
     }
   };
 </script>
@@ -129,5 +131,27 @@
 <style>
   .validationError {
     color: red;
+    font-size: .75em
+  }
+
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  * + fieldset {
+    margin-top: 1em;
+  }
+  label {
+    display: block;
+  }
+  input {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .checkout-summary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 </style>
