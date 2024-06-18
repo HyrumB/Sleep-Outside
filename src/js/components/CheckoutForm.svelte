@@ -69,11 +69,9 @@
         console.log("Response:", res);
       } catch (checkoutErr) {
         console.error("Checkout Error:", checkoutErr);
-        alert(checkoutErr);
       }
     } catch (err) {
       console.error("Form Error:", err);
-      alert(err);
     }
   };
 </script>
