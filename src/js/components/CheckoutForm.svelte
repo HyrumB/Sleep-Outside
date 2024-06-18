@@ -3,6 +3,7 @@
   import { getLocalStorage } from "../utils.mjs";
   import { calculateTotal } from "../calculateTotal.mjs";
   import { checkout } from "../externalServices.mjs";
+  import { validateForm } from "../formValidation";
 
   let list = [];
   let subtotal = 0;
@@ -42,45 +43,61 @@
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const json = {};
-    formData.forEach((value, key) => {
-      json[key] = value;
-    });
-    json.orderDate = new Date().toISOString();
-    json.orderTotal = total.toFixed(2);
-    json.tax = tax.toFixed(2);
-    json.shipping = shipping.toFixed(2);
-    json.items = packageItems(getLocalStorage("so-cart"));
-
-    console.log("Form JSON:", JSON.stringify(json, null, 2));
+    
+    if (!validateForm()) {
+      return;
+    }
 
     try {
-      const res = await checkout(json);
-      console.log("Response:", res);
+      const formData = new FormData(e.target);
+      const json = {};
+      
+      formData.forEach((value, key) => {
+        json[key] = value;
+      });
+      
+      json.orderDate = new Date().toISOString();
+      json.orderTotal = total.toFixed(2);
+      json.tax = tax.toFixed(2);
+      json.shipping = shipping.toFixed(2);
+      json.items = packageItems(getLocalStorage("so-cart"));
+
+      console.log("Form JSON:", JSON.stringify(json, null, 2));
+
+      try {
+        const res = await checkout(json);
+        console.log("Response:", res);
+      } catch (checkoutErr) {
+        console.error("Checkout Error:", checkoutErr);
+      }
     } catch (err) {
-      console.log("Error:", err);
+      console.error("Form Error:", err);
     }
   };
 </script>
 
-<form on:submit="{handleSubmit}">
+<form class="checkout-form" on:submit={handleSubmit}>
   <!-- Shipping details -->
   <fieldset class="customer-details">
     <legend>Shipping</legend>
     <label for="fname">First name:</label>
     <input type="text" id="fname" name="fname" required /><br />
+    <span id="fnameError" class="validationError"></span>
     <label for="lname">Last name:</label>
     <input type="text" id="lname" name="lname" required /><br />
+    <span id="lnameError" class="validationError"></span>
     <label for="street">Street:</label>
     <input type="text" id="street" name="street" required /><br />
+    <span id="streetError" class="validationError"></span>
     <label for="city">City:</label>
     <input type="text" id="city" name="city" required /><br />
+    <span id=cityError class="validationError"></span>
     <label for="state">State:</label>
     <input type="text" id="state" name="state" required /><br />
+    <span id="stateError" class="validationError"></span>
     <label for="zip">Zip code:</label>
     <input type="text" id="zip" name="zip" required /><br />
+    <span id="zipError" class="validationError"></span>
   </fieldset>
 
   <!-- Payment details -->
@@ -88,10 +105,13 @@
     <legend>Payment</legend>
     <label for="cardnumber">Credit card number:</label>
     <input type="text" id="cardnumber" name="cardNumber" required /><br />
+    <span id="cardNumberError" class="validationError"></span>
     <label for="expiration">Expiration date:</label>
     <input type="text" id="expiration" name="expiration" required /><br />
+    <span id="expirationError" class="validationError"></span>
     <label for="code">Security code:</label>
     <input type="text" id="code" name="code" required /><br />
+    <span id="cvvError" class="validationError"></span>
   </fieldset>
 
   <!-- Order summary -->
@@ -105,3 +125,31 @@
 
   <button type="submit">Submit</button>
 </form>
+
+<style>
+  .validationError {
+    color: red;
+    font-size: .75em
+  }
+
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  * + fieldset {
+    margin-top: 1em;
+  }
+  label {
+    display: block;
+  }
+  input {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .checkout-summary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
