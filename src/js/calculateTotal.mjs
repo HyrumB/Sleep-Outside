@@ -37,5 +37,14 @@ export function displayCartTotal(total) {
 
     newCartFooter.appendChild(totalParagraph);
     document.querySelector("main").appendChild(newCartFooter);
+
+    const checkoutButton = document.createElement("button");
+    checkoutButton.classList.add("checkout-button");
+    checkoutButton.textContent = "Checkout";
+    checkoutButton.addEventListener("click", () => {
+      console.log("Checkout clicked");
+      window.location.href = "../checkout/index.html";
+    })
+    newCartFooter.appendChild(checkoutButton);
   }
 }

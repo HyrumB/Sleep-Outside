@@ -43,7 +43,7 @@
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -51,11 +51,11 @@
     try {
       const formData = new FormData(e.target);
       const json = {};
-      
+
       formData.forEach((value, key) => {
         json[key] = value;
       });
-      
+
       json.orderDate = new Date().toISOString();
       json.orderTotal = total.toFixed(2);
       json.tax = tax.toFixed(2);
@@ -91,7 +91,7 @@
     <span id="streetError" class="validationError"></span>
     <label for="city">City:</label>
     <input type="text" id="city" name="city" required /><br />
-    <span id=cityError class="validationError"></span>
+    <span id="cityError" class="validationError"></span>
     <label for="state">State:</label>
     <input type="text" id="state" name="state" required /><br />
     <span id="stateError" class="validationError"></span>
@@ -123,13 +123,13 @@
     <p>Order total: ${total.toFixed(2)}</p>
   </fieldset>
 
-  <button type="submit">Submit</button>
+  <button id="submitBtn" type="submit">Submit</button>
 </form>
 
 <style>
   .validationError {
     color: red;
-    font-size: .75em
+    font-size: 0.75em;
   }
 
   form {
@@ -151,5 +151,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  #submitBtn {
+    margin-top: 1em;
+    margin-bottom: 0.7em;
   }
 </style>
