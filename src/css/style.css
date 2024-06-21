@@ -245,6 +245,11 @@ button {
   margin-bottom: 2em;
 }
 
+#login {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
 /* End cart list card styles */
 
 @media screen and (min-width: 500px) {

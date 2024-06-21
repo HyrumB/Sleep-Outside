@@ -3,6 +3,9 @@ import { calculateTotal, displayCartTotal } from "./calculateTotal.mjs";
 import { removeFromCart } from "./removeFromCart.mjs";
 import { incrementQuantity } from "./incrementQuantity.mjs";
 import { decrementQuantity } from "./decrementQuantity.mjs";
+import { checkLogin } from "./auth.mjs";
+
+document.addEventListener("DOMContentLoaded", checkLogin);
 
 export function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
