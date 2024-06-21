@@ -53,3 +53,26 @@ export function renderHeaderFooter() {
     target: document.querySelector("footer")
   })
 }
+
+// Problems with authentication. Page redirects made it hard
+
+// export function persistentLog(message) {
+//   const logs = JSON.parse(localStorage.getItem("debugLogs") || "[]");
+//   logs.push({timestamp: new Date().toISOString(), message});
+//   localStorage.setItem("debugLogs", JSON.stringify(logs));
+// }
+
+// export function displayLogs() {
+//   const logs = JSON.parse(localStorage.getItem("debugLogs") || "[]");
+//   const logElement = document.createElement("div");
+//   logElement.style.position = "fixed";
+//   logElement.style.top = "10px";
+//   logElement.style.right = "10px";
+//   logElement.style.backgroundColor = "rgba(0,0,0,0.8)";
+//   logElement.style.color = "white";
+//   logElement.style.padding = "10px";
+//   logElement.style.maxHeight = "80%";
+//   logElement.style.overflowY = "auto";
+//   logElement.innerHTML = logs.map(log => `${log.timestamp}: ${log.message}`).join("<br>");
+//   document.body.appendChild(logElement);
+// }
